@@ -1,18 +1,23 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
 
-const StoreSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  btcpayStoreId: {
-    type: String,
-    required: true
-  },
-  credits: {
-    type: Number,
-    default: 0
-  }
-});
-
-module.exports = mongoose.model('Store', StoreSchema);
+module.exports = (sequelize) => {
+  return sequelize.define('Store', {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
+    },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    btcpayStoreId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    credits: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0
+    }
+  });
+};
