@@ -1,9 +1,8 @@
-const Store = require('../models/Store');
-const User = require('../models/User');
+const { Store, User } = require('../models');
 
 exports.getStores = async (req, res) => {
   try {
-    const stores = await Store.find({ user: req.user.id });
+    const stores = await Store.findAll({ where: { userId: req.user.id } });
     res.json(stores);
   } catch (err) {
     console.error(err.message);
@@ -16,7 +15,7 @@ exports.addCredits = async (req, res) => {
   const { amount } = req.body;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findByPk(userId);
     if (!user) {
       return res.status(400).json({ msg: 'User not found' });
     }
