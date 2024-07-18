@@ -1,6 +1,4 @@
-const Subscription = require('../models/Subscription');
-const Store = require('../models/Store');
-const User = require('../models/User');
+const { Subscription, User } = require('../models');
 const { sendBtcpayInvite, createBtcpayStore, generateInvoice } = require('../utils/btcpay');
 const config = require('config');
 
@@ -9,7 +7,7 @@ exports.subscribe = async (req, res) => {
   const { email } = req.body;
 
   try {
-    let user = await User.findById(userId);
+    let user = await User.findByPk(userId);
     if (!user) {
       return res.status(400).json({ msg: 'User not found' });
     }
@@ -28,14 +26,12 @@ exports.subscribe = async (req, res) => {
     const price = config.get('priceEur');
     const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
 
-    const subscription = new Subscription({
-      user: userId,
+    const subscription = await Subscription.create({
+      userId: user.id,
       period: 'monthly',
       price,
       expiresAt
     });
-
-    await subscription.save();
 
     const invoice = await generateInvoice(btcpayStore.id, email);
     res.json({ invoiceUrl: invoice.url });
@@ -48,7 +44,7 @@ exports.subscribe = async (req, res) => {
 
 exports.getSubscriptions = async (req, res) => {
   try {
-    const subscriptions = await Subscription.find({ user: req.user.id });
+    const subscriptions = await Subscription.findAll({ where: { userId: req.user.id } });
     res.json(subscriptions);
   } catch (err) {
     console.error(err.message);
