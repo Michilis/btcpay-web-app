@@ -1,7 +1,6 @@
 const { Sequelize } = require('sequelize');
-const config = require('config');
 
-const sequelize = new Sequelize(process.env.POSTGRES_URI || config.get('postgresURI'), {
+const sequelize = new Sequelize(process.env.POSTGRES_URI, {
   dialect: 'postgres',
   logging: false
 });
