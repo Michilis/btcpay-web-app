@@ -1,6 +1,6 @@
 const app = require('./app');
 const config = require('config');
 
-const PORT = config.get('port') || 5000;
+const PORT = process.env.BACKEND_PORT || config.get('backendPort');
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
