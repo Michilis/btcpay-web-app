@@ -1,0 +1,8 @@
+{
+  "port": 5000,
+  "mongoURI": "your_mongo_connection_string",
+  "jwtSecret": "your_jwt_secret",
+  "btcpayServerUrl": "https://your-btcpay-server-url.com",
+  "btcpayApiKey": "your-btcpay-api-key",
+  "priceEur": 10.0
+}
