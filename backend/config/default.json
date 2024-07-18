@@ -1,8 +1,9 @@
 {
-  "port": 5000,
   "postgresURI": "your_postgres_connection_string",
   "jwtSecret": "your_jwt_secret",
   "btcpayServerUrl": "https://your-btcpay-server-url.com",
   "btcpayApiKey": "your-btcpay-api-key",
-  "priceEur": 10.0
+  "priceEur": 10.0,
+  "backendPort": 5005,
+  "frontendPort": 3005
 }
