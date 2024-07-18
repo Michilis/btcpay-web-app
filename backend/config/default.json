@@ -1,4 +1,9 @@
 {
-  "postgresURI": "your_postgres_uri_here",
-  "backendPort": 3001
+  "postgresURI": "postgres://newuser:password@localhost:5432/newdatabase",
+  "jwtSecret": "your_jwt_secret",
+  "btcpayServerUrl": "https://your-btcpay-server-url.com",
+  "btcpayApiKey": "your_btcpay_api_key",
+  "priceEur": 10.0,
+  "backendPort": 5005,
+  "frontendPort": 3005
 }
