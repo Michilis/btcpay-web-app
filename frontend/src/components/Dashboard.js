@@ -32,13 +32,13 @@ const Dashboard = () => {
       <h2>Subscriptions</h2>
       <ul>
         {subscriptions.map(sub => (
-          <li key={sub._id}>{sub.period} - {sub.price} EUR - Expires at {new Date(sub.expiresAt).toLocaleDateString()}</li>
+          <li key={sub.id}>{sub.period} - {sub.price} EUR - Expires at {new Date(sub.expiresAt).toLocaleDateString()}</li>
         ))}
       </ul>
       <h2>Stores</h2>
       <ul>
         {stores.map(store => (
-          <li key={store._id}>Store ID: {store.btcpayStoreId} - Credits: {store.credits} BTC</li>
+          <li key={store.id}>Store ID: {store.btcpayStoreId} - Credits: {store.credits} BTC</li>
         ))}
       </ul>
     </div>
